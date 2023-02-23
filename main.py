@@ -76,12 +76,20 @@ def speechToText(text):
     os.remove("./" + filename)
 
 # Here Start Main Code
-stream, recognizer = start_listening()
+shouldOpenListening = False
 
 while True:
+    if shouldOpenListening is False:
+        shouldOpenListening = True
+        stream, recognizer = start_listening()
+    
     data = stream.read(4096)
     
     if recognizer.AcceptWaveform(data):
+        stream.stop_stream()
+        stream.close()
+        shouldOpenListening = False
+
         text = recognizer.Result()
         message = text[14:-3]
         
