@@ -97,6 +97,9 @@ while True:
         if message == "salir" or message == "exit":
             break
         
+        if message == "":
+            continue
+        
         print("I've heard: " + message)
         
         # Ask chatgpt
