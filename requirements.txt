@@ -1,0 +1,7 @@
+vosk
+pyaudio
+python-dotenv
+requests
+gTTS
+playsound
+pygobject
