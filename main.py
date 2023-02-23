@@ -86,20 +86,20 @@ while True:
     data = stream.read(4096)
     
     if recognizer.AcceptWaveform(data):
+        text = recognizer.Result()
+        message = text[14:-3]
+
+        if message == "":
+            continue
+
         stream.stop_stream()
         stream.close()
         shouldOpenListening = False
-
-        text = recognizer.Result()
-        message = text[14:-3]
         
         # Break the loop with those words
         if message == "salir" or message == "exit":
             break
-        
-        if message == "":
-            continue
-        
+
         print("I've heard: " + message)
         
         # Ask chatgpt
